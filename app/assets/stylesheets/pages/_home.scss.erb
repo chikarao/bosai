@@ -1,0 +1,173 @@
+/* -------------------------------------
+ * CSS code specific to home page
+ * (margin/padding adjustments)
+ *
+ * v1 Initial updated by Sou : July 19
+ * v2 Bug fix by Sou         : July 20
+ * ------------------------------------- */
+
+.container_bosai_title {
+  max-width: 100%;
+  position: 0 auto;
+  margin: 0 auto;
+}
+
+.container_bosai_banner {
+  max-width: 100%;
+  position: 0 auto;
+  margin: 0 auto;
+}
+
+.container_bosai_vprop {
+  max-width: 100%;
+  position: 0 auto;
+  margin: 0 auto;
+}
+
+.wrapper-gray {
+  background-color: $gray;
+}
+
+.wrapper-aqua {
+  background-color: $pale_aqua;
+}
+
+.container {
+  padding: 10px;
+}
+
+.urgent {
+  font-size: 16px;
+  color: $black;
+  background-color: $yellow;
+}
+
+.banner {
+  color: $white;
+  text-align: center;
+  height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner h1 {
+  font-size: 60px;
+  //font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  font-family: Lato;
+}
+
+.banner p {
+  font-size: 25px;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.jumbotron {
+  background:url("<%= image_path 'disaster_2000x1333_optim.jpg' %>") center no-repeat;
+  background-size: cover;
+  padding-bottom:0px;
+  height: 100vh;
+}
+
+.jumbotron_left {
+  background:url("<%= image_path 'get_help_1000x667.jpg' %>") center no-repeat;
+  background-size: cover;
+  padding-bottom:0px;
+}
+
+.jumbotron_right {
+  background:url("<%= image_path 'provide_help_1000x667.jpg' %>") center no-repeat;
+  background-size: cover;
+  padding-bottom:0px;
+}
+
+.project_title {
+  // Sou July28 12:50pm
+  // background-color: $white;
+  h1 {
+    color: $black;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  }
+  p {
+    color: $black;
+    font-size: 25px;
+    font-weight: lighter;
+    //color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+  }
+}
+
+.project_title_darkbg {
+  // Sou July28 12:50pm
+  // background-color: $white;
+  h1 {
+    color: $white;
+    font-size: 80px;
+    font-weight: 600;
+    text-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+    font-family: Lato;
+  }
+  h2 {
+    color: $white;
+    font-size: 25px;
+    text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  }
+  p {
+    color: $white;
+    font-size: 25px;
+    font-weight: lighter;
+    //color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+  }
+}
+
+.value_prop  {
+  font-size: 25px;
+  color: $black;
+  background-color: $white;
+  h2 {
+    font-size: 25px;
+  }
+}
+
+.sign_up{
+  font-size: 18px;
+  color: $black;
+  background-color: $gray;
+}
+
+.news {
+  font-size: 18px;
+  color: $white;
+  background-color: $gray;
+}
+
+body {
+  color: $black;
+  background-color: $white;
+}
+
+.alert-success {
+  background-color: $blue;
+}
+
+.panel-heading-text{
+  color: $black;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.span_style {
+  color: $blue;
+  background-color: $pale_aqua;
+  margin-right: 6px;
+  padding: 4px;
+}
+

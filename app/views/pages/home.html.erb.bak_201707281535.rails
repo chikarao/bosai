@@ -1,0 +1,220 @@
+<!-- <div class="container"> -->
+
+<!-- URGENT MESSAGE BAR -->
+<!-- <div class="row urgent text-center">
+  <div class="col-xs-12 col-sm-12">
+    <p class="h4">Japan earthquake: Powerful new tremor in Kumamoto ></p>
+  </div>
+</div> -->
+
+
+<!-- PROJECT NAME WITH JUMBOTRON BANNER-->
+<!-- Sou July28 -->
+<div class="banner jumbotron jumbotron-fluid">
+  <div class="container container_bosai_title text-center padded features">
+    <div class="row">
+      <div class="project_title_darkbg">
+        <h1>Project 'Bosai'</h1>
+        <br />
+        <h2>Instant community based</h2>
+        <!-- <h2><span class="span_style">Disaster Relief Infrastructure</span></h2> -->
+        <h2>Disaster Relief Infrastructure</h2>
+        <h2>anywhere in the world.</h2>
+        <br />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div>
+        <% if user_signed_in? == false %>
+        <%= link_to 'Get involved', '#user_action', class: "btn btn-lg btn-text- btn-success btn-text-w-large"%>
+        <% end %>
+         <%# if user_signed_in? == false %>
+         <%#= link_to 'Get involved', new_user_registration_path, class: "btn btn-lg btn-text- btn-success btn-text-w-large" %>
+         <%# end %>
+      </div><br /><br />
+    </div>
+  </div>
+</div>
+
+<!-- VPROP WITH CALL TO ACTION -->
+<!-- Sou July28 -->
+<div class="container container_bosai_vprop text-center padded features">
+  <div class="row">
+    <div class="value_prop">
+      <h2>We solve the inefficiency in the distribution of relief supplies and aid in the aftermath of catastrophic disasters, leading to severe "secondary disasters."</h2>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+      <div>
+        <% if user_signed_in? == false %>
+        <%= link_to 'Get involved', '#user_action', class: "btn btn-lg btn-text- btn-success btn-text-w-large"%>
+        <% end %>
+         <%#= link_to 'Join our community', new_user_registration_path, class: "btn btn-lg btn-text- btn-success btn-text-w-large" %>
+         <%# end %>
+      </div><br /><br />
+  </div>
+</div>
+
+<!-- BANNER  -->
+<!-- <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%), url('<%#= image_path 'bosai_banner.jpg' %>');">
+  <div class="banner-content">
+    <h1>Disaster Relief</h1>
+    <p>Join the team and help solve World's biggest disaster threat.</p> -->
+     <%# if user_signed_in? == false %>
+     <%#= link_to 'Sign Up', new_user_registration_path, class: "btn btn-warning" %>
+     <%# end %>
+ <!--  </div>
+</div> -->
+
+
+<!-- DOUBLE BANNER START-->
+<!-- <div class="container text-center padded features sign_up"> -->
+<div id="user_action" class="container-fluid container_bosai_banner text-center">
+  <!-- ROW START -->
+  <div class="row">
+    <!-- LEFT BANNER START -->
+    <div class="banner col-xs-12 col-sm-6" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path 'get_help.jpg' %>'); background-position: 50% 50%;">
+      <div class="banner-content" align="center">
+        <h1>Get Help</h1>
+        <p>
+          You are not alone! The thousands of members of your local community and aid organizations are here for you with emergency aid when you need it most, and also to help you recover from a disaster or become better prepared to face one in the future.
+        </p>
+         <% if user_signed_in? == false %>
+         <%= link_to 'I need  help', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+         <% end %>
+     </div>
+    </div>
+    <!-- LEFT BANNER END -->
+
+    <!-- RIGHT BANNER START -->
+    <div class="banner col-xs-12 col-sm-6" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path 'provide_help.jpg' %>'); background-position: 50% 50%;">
+      <div class="banner-content" align="center">
+        <h1>Provide Help</h1>
+        <p>
+          Whether helping one displaced person or family, providing assistance to injured people in the community, or teaching others how to respond in emergencies, it’s through the efforts of ordinary people that we can do extraordinary things.
+        </p>
+        <!-- Sou July28 11:15 -->
+         <% if user_signed_in? == false %>
+         <%= link_to 'I want to help', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+         <% end %>
+      </div>
+    </div>
+    <!-- RIGHT BANNER END -->
+  <!-- ROW END -->
+  </div>
+</div>
+<!-- DOUBLE BANNER END-->
+
+
+<!-- DOUBLE BANNER JUMBOTRON START-->
+<!-- <div class="container text-center padded features sign_up"> -->
+<!-- Sou July28 8:30 -->
+<!-- <div class="container_bosai_banner text-center"> -->
+  <!-- ROW START -->
+<!-- Sou July28 8:30 -->
+  <!-- <div class="row"> -->
+    <!-- LEFT BANNER START -->
+<!-- Sou July28 8:30 -->
+<!--     <div class="banner jumbotron_left">
+      <div class="container banner-content">
+        <h1>Get Help</h1>
+        <p>You are not alone! The thousands of staff and volunteers of the Red Cross are here for you with emergency aid when you need it most, and also advice and assistance to help you recover from a disaster or become better prepared to face one in the future.</p>
+         <%# if user_signed_in? == false %>
+         <%#= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+         <%# end %>
+      </div>
+    </div> -->
+   <!-- LEFT BANNER END -->
+
+    <!-- RIGHT BANNER START -->
+    <!-- Sou July28 8:30 -->
+ <!--    <div class="banner jumbotron_right">
+      <div class="container banner-content">
+        <h1>Provide Help</h1>
+        <p>Whether helping one displaced family or thousands, providing care and comfort to an ill or injured service member or veteran, or teaching others how to respond in emergencies, it’s through the efforts of ordinary people that we can do extraordinary things. </p>
+         <%# if user_signed_in? == false %>
+         <%#= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+         <%# end %>
+      </div>
+    </div> -->
+    <!-- RIGHT BANNER END -->
+  <!-- ROW END -->
+<!--   </div>
+</div> -->
+<!-- DOUBLE BANNER JUMBOTRON END-->
+
+
+<!-- BANNER JUMBOTRON -->
+<!-- <div class="banner jumbotron">
+  <div class="container banner-content">
+    <h1>Project 'Bosai'</h1>
+    <p>Instant community based disaster relief infrastructure anywhere in the world.</p>
+     <%# if user_signed_in? == false %>
+     <%#= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+     <%# end %>
+  </div>
+</div> -->
+
+
+
+<!-- VALUE PROP -->
+<!-- Sou July28 8:30 -->
+<!-- <div class="wrapper-gray">
+  <div class="container_bosai_title text-center padded features">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 value_prop">
+        <h2>Web-based communication and logistic solution at a fraction of the cost of a tailor made system.</h2>
+        <br />
+        <h4>
+        We solve the inefficiency in the distribution of relief supplies and aid in the aftermath of catastrophic disasters, leading to severe "secondary disasters."
+        </h4>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- VALUE PROP -->
+<!-- Sou July28 8:30 -->
+<!-- <div class="wrapper-gray">
+  <div class="container_bosai_vprop text-center padded features sign_up">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <%# if user_signed_in? == false %>
+          <%#= image_tag "get_help.png" %>
+        <%# else %>
+          <%#= link_to image_tag("get_help.png"), new_user_request_path(current_user.id) %>
+        <%# end %>
+        <h2>Get Help</h2>
+        <p>You are not alone! The thousands of members of your local community and aid organizations are here for you with emergency aid when you need it most, and also to help you recover from a disaster or become better prepared to face one in the future.</p>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <%#= link_to image_tag("provide_help.png"), requests_list_path %>
+        <%#= image_tag "provide_help.png" %>
+        <h2>Provide Help</h2>
+        <p>Whether helping one displaced person or family, providing assistance to injured people in the community, or teaching others how to respond in emergencies, it’s through the efforts of ordinary people that we can do extraordinary things.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+         <%# if user_signed_in? == false %>
+         <%#= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-mid" %>
+         <%# end %>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+<!-- NEWS -->
+<!-- Sou July28 8:30 -->
+<!-- <div class="text-center news" id="newsletter">
+  <h2>Sign Up for News</h2>
+  <p>Stay informed on disaster alerts, preparedness tips, and ways to get involved.</p>
+  <form class="form-inline">
+    <input type="email" placeholder="Enter Email Address" class="form-control">
+    <input type="submit" value="Subscribe" class="btn btn-primary btn-bordered btn-bordered-primary">
+  </form>
+</div> -->
+<!-- </div> -->

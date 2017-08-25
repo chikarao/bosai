@@ -1,0 +1,4 @@
+<%= simple_form_for( [ request_user, request, message], remote: true) do |f| %>
+  <%= f.input :text, label: "Content" %>
+  <%= f.button :submit, "Post", {class: "btn-lg btn-sign" } %>
+<% end %>

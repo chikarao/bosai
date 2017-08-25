@@ -1,0 +1,6 @@
+# Sou July27
+meta_product_name: "Project 'Bosai'"
+meta_title: "Project Bosai - Instant disaster relief infrastructure any where in the world."
+meta_description: "We provide web-based communication and logistic solution at a fraction of the cost of a tailor made system. We solve the inefficiency in the distribution of relief supplies and aid in the aftermath of catastrophic disasters, leading to severe 'secondary disasters'"
+meta_image: "bosai_coverpic_1200x630.jpg"     # should exist in `app/assets/images/`
+twitter_account: "@bosaiworld"   # required for Twitter Cards

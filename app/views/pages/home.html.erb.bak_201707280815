@@ -1,0 +1,84 @@
+<!-- <div class="container"> -->
+
+<!-- URGENT MESSAGE BAR -->
+<!-- <div class="row urgent text-center">
+  <div class="col-xs-12 col-sm-12">
+    <p class="h4">Japan earthquake: Powerful new tremor in Kumamoto ></p>
+  </div>
+</div> -->
+
+<!-- BANNER  -->
+<!-- <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%), url('<%#= image_path 'bosai_banner.jpg' %>');">
+  <div class="banner-content">
+    <h1>Disaster Relief</h1>
+    <p>Join the team and help solve World's biggest disaster threat.</p> -->
+     <%# if user_signed_in? == false %>
+     <%#= link_to 'Sign Up', new_user_registration_path, class: "btn btn-warning" %>
+     <%# end %>
+ <!--  </div>
+</div> -->
+
+<!-- BANNER JUMBOTRON -->
+<div class="banner jumbotron">
+  <div class="container banner-content">
+    <h1>Project 'Bosai'</h1>
+    <p>Instant community based disaster relief infrastructure anywhere in the world.</p>
+     <% if user_signed_in? == false %>
+     <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+     <% end %>
+  </div>
+</div>
+
+<!-- VALUE PROP -->
+<div class="container text-center padded features">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 value_prop">
+      <h2>Web-based communication and logistic solution at a fraction of the cost of a tailor made system.</h2>
+      <br />
+      <h4>
+      We solve the inefficiency in the distribution of relief supplies and aid in the aftermath of catastrophic disasters, leading to severe "secondary disasters."
+      </h4>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN UP -->
+<div class="wrapper-gray">
+  <div class="container text-center padded features sign_up">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <% if user_signed_in? == false %>
+          <%= image_tag "get_help.png" %>
+        <% else %>
+          <%= link_to image_tag("get_help.png"), new_user_request_path(current_user.id) %>
+        <% end %>
+        <h2>Get Help</h2>
+        <p>You are not alone! The thousands of members of your local community and aid organizations are here for you with emergency aid when you need it most, and also to help you recover from a disaster or become better prepared to face one in the future.</p>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <%= link_to image_tag("provide_help.png"), requests_list_path %>
+        <%#= image_tag "provide_help.png" %>
+        <h2>Provide Help</h2>
+        <p>Whether helping one displaced person or family, providing assistance to injured people in the community, or teaching others how to respond in emergencies, it’s through the efforts of ordinary people that we can do extraordinary things.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
+         <% if user_signed_in? == false %>
+         <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-mid" %>
+         <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<div class="text-center padded news" id="newsletter">
+  <h2>Sign Up for News</h2>
+  <p>Stay informed on disaster alerts, preparedness tips, and ways to get involved.</p>
+  <form class="form-inline">
+    <input type="email" placeholder="Enter Email Address" class="form-control">
+    <input type="submit" value="Subscribe" class="btn btn-primary btn-bordered btn-bordered-primary">
+  </form>
+</div>
+<!-- </div> -->

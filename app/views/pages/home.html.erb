@@ -1,0 +1,100 @@
+<!-- PROJECT NAME WITH JUMBOTRON BANNER-->
+<!-- Sou July28 -->
+<div class="banner jumbotron jumbotron-fluid">
+  <div class="container container_bosai_title text-center padded features">
+    <div class="row">
+      <div class="project_title_darkbg">
+        <h1>Project 'Bosai'</h1>
+        <br />
+        <h2>Instant community based</h2>
+        <!-- <h2><span class="span_style">Disaster Relief Infrastructure</span></h2> -->
+        <h2>Disaster Relief Infrastructure</h2>
+        <h2>anywhere in the world.</h2>
+        <br />
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div>
+        <% if user_signed_in? == false %>
+        <%= link_to 'Get involved', '#user_action', class: "btn btn-lg btn-text- btn-success btn-text-w-large"%>
+        <% end %>
+         <%# if user_signed_in? == false %>
+         <%#= link_to 'Get involved', new_user_registration_path, class: "btn btn-lg btn-text- btn-success btn-text-w-large" %>
+         <%# end %>
+      </div><br /><br />
+    </div>
+  </div>
+</div>
+
+<!-- VPROP WITH CALL TO ACTION -->
+<!-- Sou July28 -->
+<div class="container container_bosai_vprop text-center padded features">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="value_prop">
+        <h2>We solve the inefficiency in the distribution of relief supplies and aid in the aftermath of catastrophic disasters, leading to severe "secondary disasters."</h2>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+      <div>
+        <% if user_signed_in? == false %>
+        <%= link_to 'Get involved', '#user_action', class: "btn btn-lg btn-text- btn-success btn-text-w-large"%>
+        <% end %>
+         <%#= link_to 'Join our community', new_user_registration_path, class: "btn btn-lg btn-text- btn-success btn-text-w-large" %>
+         <%# end %>
+      </div><br /><br />
+  </div>
+</div>
+
+<!-- DOUBLE BANNER START-->
+<!-- <div class="container text-center padded features sign_up"> -->
+<div id="user_action" class="container-fluid container_bosai_banner text-center">
+  <!-- ROW START -->
+  <div class="row">
+    <!-- LEFT BANNER START -->
+    <div class="banner col-xs-12 col-sm-6" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path 'get_help_1000x667.jpg' %>'); background-position: 50% 50%;">
+      <div class="banner-content" align="center">
+        <h1>Get Help</h1>
+        <p>
+          You are not alone! The thousands of members of your local community and aid organizations are here for you with emergency aid when you need it most, and also to help you recover from a disaster or become better prepared to face one in the future.
+        </p>
+         <% if user_signed_in? == false %>
+         <%= link_to 'I need  help', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+         <% end %>
+     </div>
+    </div>
+    <!-- LEFT BANNER END -->
+
+    <!-- RIGHT BANNER START -->
+    <div class="banner col-xs-12 col-sm-6" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 50%), url('<%= image_path 'provide_help_1000x667.jpg' %>'); background-position: 50% 50%;">
+      <div class="banner-content" align="center">
+        <h1>Provide Help</h1>
+        <p>
+          Whether helping one displaced person or family, providing assistance to injured people in the community, or teaching others how to respond in emergencies, it’s through the efforts of ordinary people that we can do extraordinary things.
+        </p>
+        <!-- Sou July28 11:15 -->
+         <% if user_signed_in? == false %>
+         <%= link_to 'I want to help', new_user_registration_path, class: "btn btn-lg btn-warning btn-text-large" %>
+         <% end %>
+      </div>
+    </div>
+    <!-- RIGHT BANNER END -->
+  <!-- ROW END -->
+  </div>
+</div>
+<!-- DOUBLE BANNER END-->
+
+
+<!-- NEWS -->
+<!-- Sou July28 8:30 -->
+<!-- <div class="text-center news" id="newsletter">
+  <h2>Sign Up for News</h2>
+  <p>Stay informed on disaster alerts, preparedness tips, and ways to get involved.</p>
+  <form class="form-inline">
+    <input type="email" placeholder="Enter Email Address" class="form-control">
+    <input type="submit" value="Subscribe" class="btn btn-primary btn-bordered btn-bordered-primary">
+  </form>
+</div> -->

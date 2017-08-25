@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <h2 class=text-center>
+        <strong>Sign up</strong>
+      </h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :first_name, required: true, autofocus: true, label: false, placeholder: "First Name" %>
+        <%= f.input :last_name, required: true, autofocus: true, label: false, placeholder: "Last Name" %>
+        <%= f.input :email, required: true, autofocus: true, label: false, placeholder: "Email" %>
+
+        <%= f.input :address, autofocus: true, label: false, required: true, placeholder: "Address" %>
+
+        <%= f.input :password, required: true, autofocus: true, label: false, placeholder: "Password", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+
+        <%= f.input :password_confirmation, required: true, label: false, placeholder: "Password Confirmation" %>
+
+        <%= f.input :phone_number, autofocus: true, label: false, required: true, placeholder: "Phone Number" %>
+
+        <!-- ToDo Enable to select organization from List-->
+        <div id="select-form">
+          <%= f.association :organization, autofocus: true, label: false, required: false, prompt: "--Select Organization--", input_html: { id: "orgnization" } %>
+        </div>
+
+        <!-- ToDo Enable to select evacuation_point from Map-->
+
+        <div class="sign-up-btn-line">
+          <div class="row">
+            <div class="col-xs-4">
+              <%= f.button :submit, "Sign up", {class: "btn-lg btn-sign" } %>
+            </div>
+            <div class="col-xs-5">
+              <p>Have an Account?<br>
+                <%= link_to "Log in", new_session_path(resource_name) %>
+              </p>
+            </div>
+            <div class="col-xs-3">
+              <p><div id="forget-pw">
+                <%= link_to "Forgot password?", new_password_path(resource_name) %>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <% end %>
+
+
+      <%- if devise_mapping.omniauthable? %>
+        <div class="external-login col-xs-6 col-xs-offset-3" align="center">
+          <%= link_to omniauth_authorize_path(resource_name, :facebook), {class: "btn btn-block btn-social btn-facebook"} do %>
+              <span class="fa fa-facebook"></span><div class="text-center">Facebook Login</div>
+          <% end %>
+
+          <br>
+
+          <%= link_to omniauth_authorize_path(resource_name, :twitter), {class: "btn btn-block btn-social btn-twitter"} do %>
+              <span class="fa fa-twitter"></span><div class="text-center">Twitter Login</div>
+          <% end %>
+        </div>
+        <% end -%>
+      <hr>
+
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<%= content_for(:after_js) do %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?language=en&libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+<% end %>

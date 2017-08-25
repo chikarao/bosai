@@ -1,0 +1,27 @@
+
+<!-- Sou July26 -->
+<%= simple_form_for [@user, @request] do |f| %>
+
+  <div class="js-request">
+    <div class="field">
+      <%= f.input :address, input_html: {value: current_user.address || ""} %>
+    </div>
+    <div class="field">
+
+    <p class="h2"> Item </p>
+      <%= f.simple_fields_for :items_requests do |ir| %>
+        <%= render 'requests/items_request_fields', f: ir %>
+      <% end %>
+    </div>
+
+   <div class="field" style="position: relative; top: -40px">
+      <%= link_to_add_association 'Add Item', f, :items_requests, { class: "btn btn-lg btn-sign pull-right", style: "color: white; margin-top: 10px" } %>
+   </div>
+   <div style="clear: both"></div>
+
+   <div class="actions">
+     <%= f.submit 'Submit', {class: "btn btn-lg btn-text-w-mid btn-success btn-block" }  %>
+   </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= link_to_remove_association 'Remove', f, {class: "btn btn-default btn-xs pull-right", style: "" } %>
+    <div style="clear: both"></div>
+    <div class="row">
+      <div class="col-xs-7">
+        <%= f.association :item %>
+      </div>
+      <div class="col-xs-5">
+        <%= f.input :quantity %>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

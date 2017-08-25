@@ -1,0 +1,232 @@
+<!-- UPPER CONTAINER START -->
+
+<div class="container text-center">
+  <div class="row">
+
+    <!-- USER PROFILE -->
+    <div class="col-xs-12 col-sm-6">
+      <p class="h2">Your Profile</p>
+      <div>
+        <table class="table table-hover table-condensed text-left">
+          <tr>
+            <th>Name</th>
+            <td><%= current_user.first_name.capitalize + " " + current_user.last_name.capitalize %>
+            </td>
+          </tr>
+          <tr>
+            <th>Contact</th>
+            <td><%= current_user.email  %></td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td><%= current_user.address.nil? ? "n/a" : current_user.address %></td>
+            <!-- <td><%#= button_tag(type: 'button', class: "currentLocation") do
+          content_tag(:strong, 'Get Current Location!') end %></td> -->
+          </tr>
+          <tr>
+            <th>Phone Number</th>
+            <td><%= current_user.phone_number.nil? ? "n/a" : current_user.phone_number %></td>
+          </tr>
+          <tr>
+            <th>Organization</th>
+            <td><%= current_user.organization.nil? ? "n/a" : current_user.organization.name %></td>
+          </tr>
+          <tr>
+            <th>Evacuation Point</th>
+            <td><%= current_user.evacuation_point.nil? ? "n/a" : current_user.evacuation_point.name %></td>
+          </tr>
+        </table>
+      </div>
+      <div align="center">
+        <%= link_to 'Edit Your Information', edit_user_registration_path, class:"btn btn-lg btn-text-small btn-primary btn-block" %>
+      </div>
+    </div>
+
+    <!-- GOOGLE MAP -->
+    <div class="col-xs-12 col-sm-6">
+      <p class="h2">Your Location</p>
+      <div id="map2" style="width:100%; height:400px;"></div>
+    </div>
+
+  <!-- End of row with Profile and Map -->
+  </div>
+<!-- End of Container -->
+</div>
+
+
+<!-- BOTTOM CONTAINER START -->
+
+<div class="container text-center">
+  <div class="row">
+    <!-- <div><p class="h2">Your Requests</p></div> -->
+
+    <!-- USER REQUESTS START -->
+    <div class="col-xs-12 col-sm-6">
+      <p class="h2">Your Requests</p>
+   <!--    <div class="wrapper-aqua">
+        <p class="h4">Enter Your Request</p>
+        <div>
+         <%#= link_to 'Create New Request', new_user_request_path(current_user), class:"btn btn-lg btn-text-small btn-success btn-block" %>
+        </div>
+        <div> </div>
+      </div> -->
+      <div>
+      <div class="clickable-table">
+        <table class="table table-hover table-condensed text-left">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @requests.each do |r| %>
+                <tr class='clickable-row' data-href='/users/<%= r.user_id %>/requests/<%= r.id %>' >
+                  <td scope="row"><%= r.items_requests.map {|i| "#{i.item.name}: #{i.quantity}"}.join(", ") if r.items_requests.present? %></td>
+                  <td><%= r.status  %></td>
+                  <td><%= link_to 'Delete', user_request_path(current_user.id, r.id), data: { confirm: "Are you sure?" }, method: :delete, class: "text-warning text-left" %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div align="center">
+         <%= link_to 'Get Help', new_user_request_path(current_user), class:"btn btn-lg btn-text-small btn-info btn-block" %>
+        </div>
+      </div>
+    </div>
+    <!-- USER REQUESTS END -->
+
+    <!-- HELP START -->
+    <div class="col-xs-12 col-sm-6">
+      <p class="h2">Your Helping Hands</p>
+   <!--    <div class="wrapper-aqua">
+        <p class="h4">Enter Your Request</p>
+        <div>
+         <%#= link_to 'Create New Request', new_user_request_path(current_user), class:"btn btn-lg btn-text-small btn-success btn-block" %>
+        </div>
+        <div> </div>
+      </div> -->
+      <div class="clickable-table">
+        <table class="table table-hover table-condensed text-left">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Status</th>
+              <th style="">Request User</th>
+            </tr>
+          </thead>
+              <tbody>
+
+                  <% @helping_requests.each do |r| %>
+                    <tr class='clickable-row' data-href='/users/<%= r.user_id %>/requests/<%= r.id %>' >
+                      <td scope="row"><%= r.items_requests.map {|i| "#{i.item.name}: #{i.quantity}"}.join(", ") if r.items_requests.present? %></td>
+                      <td><%= r.status  %></td>
+                    <td><%= r.user.first_name %></td>
+                    </tr>
+                  <% end %>
+
+              </tbody>
+          </table>
+        </div>
+        <div align="center">
+         <%= link_to 'Provide Help', requests_list_path, class:"btn btn-lg btn-text-small btn-info btn-block" %>
+        </div>
+      </div>
+    </div>
+    <!-- HELP END -->
+
+  <!-- End of row with Requests -->
+  </div>
+<!-- End of Container -->
+</div>
+
+<!-- Sou July26 -->
+<!--  <h2>Provide Help</h2>
+      <form action="/requests/list" class="navbar-wagon-search pull-left">
+        <input type="text" name="area" class="navbar-wagon-search-input" placeholder="Search Area">
+        <button type="submit" class="navbar-wagon-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form> -->
+
+
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?language=en&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/js-marker-clusterer/1.0.0/markerclusterer_compiled.js"></script> -->
+<!-- <script src="https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js"></script> -->
+<!-- <script src="https://cdn.rawgit.com/apneadiving/Google-Maps-for-Rails/master/js_compilation/gmaps_google.js"></script> -->
+
+<script type="text/javascript">
+/////////////////////////////////////////////////
+
+
+  $(document).on('ready', function () {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+    ///////////////////////////////////////////////////////
+    //////////////Draw Map/////////////////////////////
+    var handler = Gmaps.build('Google', {
+      markers: {
+        clusterer: undefined
+      }
+    });
+    handler.buildMap({
+      internal: {
+        id: 'map2'
+      }
+    }, function () {
+      markers = handler.addMarkers([
+        {
+          "lat": "<%= current_user.latitude %>",
+          "lng": "<%= current_user.longitude %>"
+        },
+        <% @near_shelters.each do |s|  %>
+        {
+          "lat": "<%= s.latitude %>",
+          "lng": "<%= s.longitude %>",
+          "picture": {
+            "url": "<%= asset_path('group-2.png') %>",
+            "width": 40,
+            "height": 40
+          },
+          "infowindow": '<%= link_to s.name, "https://www.google.com/maps/dir/?api=1&destination=#{s.latitude},#{s.longitude}&travelmode=walking", {target: "_blank", class: "h6 text-danger"} %><p><%= s.address %></p><p>Number_of_Evacuees: <%= s.number_of_evacuees %> / Max: <%= s.max_evacuees %></p>'
+        },
+        <% end %>
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setCenter(new google.maps.LatLng("<%= current_user.latitude %>", "<%= current_user.longitude %>"));
+      handler.getMap().setZoom(15);
+    });
+  })
+  ////////////////////
+  var options = {
+    enableHighAccuracy: true,
+    timeout : 10000,
+    maximumAge: 0
+  };
+
+  function successGetPosition(position){
+    alert( "Successfully Got Current Location" );
+    alert( "lat:" + position.coords.latitude + ", lng:" + position.coords.longitude);
+    window.location.href = "/users/<%= current_user.id %>/requests/?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude;
+  };
+
+  function failGetPosition(){
+    alert( "Failed. Your browser does not support Geolocation." );
+  };
+
+  $('.currentLocation').click(function(){
+    if( navigator.geolocation ){   //Get Current Location
+      navigator.geolocation.getCurrentPosition(successGetPosition, failGetPosition, options);
+    }
+  });
+     // // successGetPosition = (position) -> //   window.location.href = "/shops/searches?latitude=#{position.coords.latitude}&longitude=#{position.coords.longitude}" // // options = //   enableHighAccuracy: true //
+    // failGetPosition = (error) -> //   switch error.code
+</script>

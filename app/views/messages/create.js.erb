@@ -1,0 +1,13 @@
+<% if @message.errors.any? %>
+  // Render new review form with errors
+  $('.posting-form').html("<%= j render 'messages/form', request_user: @request_user, request: @request, message: @message %>");
+<% else %>
+  // Create a paragraph for the new message. But hide it.
+  var new_message = $("<%= j render 'messages/show', message: @message %>").hide();
+  // Add it to the DOM, at the end of the existing messages. It's still hidden.
+  $('.communication-log').append(new_message);
+  // Show the new message with an animation!
+  new_message.slideDown();
+  // Reset the form
+  $('.posting-form').html("<%= j render 'messages/form', request_user: @request_user, request: @request, message: Message.new %>");
+<% end %>

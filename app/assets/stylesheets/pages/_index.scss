@@ -1,0 +1,144 @@
+@import "home";
+
+#map {
+  height: 100%;
+}
+/* Makes the sample page fill the window. */
+html, body, #wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#wrapper { position: relative; }
+
+#filter { position: absolute; width: 275px; height: 700px; top: 75px; left: 20px; z-index: 99; background-color: white; border-radius: 2px;
+  box-shadow: 1px 1px 2px #B3B3B3; overflow:scroll; color: black; padding: 10px; opacity: 80%;}
+
+#search { position: absolute; width: 456px; height: 50px; top: 50px; left: 400px; z-index: 99; opacity: 100%; border-radius: 2px; padding: 10px;}
+
+#results { position: absolute; width: 350px; height: 400px; top: 125px; right: 20px; z-index: 99; background-color: white; border-radius: 2px;
+  box-shadow: 1px 1px 2px #B3B3B3; overflow-y:scroll; color: black; padding: 10px;}
+
+#summary { position: absolute; width: 350px; min-height: 200px; top: 173px; right: 388px; z-index: 99; background-color: white; border-radius: 2px;
+  box-shadow: 1px 1px 2px #B3B3B3; overflow-y:scroll; color: black; padding: 10px;}
+
+.results-text {
+padding-left:5px;
+white-space: pre-wrap;
+
+}
+
+.first-p {
+  padding-top: 10px;
+
+}
+
+.results-text-heading {
+// font-weight: bold;
+margin:0px;
+font-size: 18px;
+padding:10px;
+color:black;
+
+}
+
+.heading-box {
+ background-color:#CDD3CE;
+ color:white;
+ height: 40px;
+ margin-bottom:10px;
+border-bottom: 1px solid darkslategrey;
+
+}
+
+.summary-text-heading {
+ // font-weight: bold;
+ color:black;
+
+ margin:0px;
+ vertical-align: middle;
+ font-size: 18px;
+ padding:10px;
+
+}
+
+
+
+.summary-text {
+  // margin: 0px;
+  // margin-left: 15px;
+  // margin-bottom: 10px;
+    width: 50%;
+    float: left;
+    padding: 7px;
+    margin: 0px;
+    white-space: pre-wrap;
+}
+
+.km-entry { width: 50px;}
+
+.button-search {
+
+  background-color: #0B3954;
+  border: none;
+    border-radius:5px;
+
+}
+
+.button-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 10px;
+  float: left;
+}
+
+.button-uncheckall {
+  background-color:#CDD3CE;
+  border-radius:5px;
+  color:black;
+}
+
+.button-summarize {
+  background-color:#0B3954;
+  border-radius:5px;
+
+}
+
+.button-show-details {
+  background-color:#0B3954;
+  border-radius:5px;
+
+}
+
+.button-show-summary{
+  background-color:#0B3954;
+  border-radius:5px;
+
+}
+
+.button-uncheckall:hover {
+opacity: 80%;
+
+}
+
+
+.button-summarize:hover {
+opacity: 80%;
+
+}
+
+.button-show-details:hover {
+opacity: 80%;
+
+}
+
+.last-pline {
+
+  padding-bottom: 20px;
+}
+

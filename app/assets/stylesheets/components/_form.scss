@@ -1,0 +1,73 @@
+.btn-request {
+  background: $red;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  color:white;
+}
+
+.form-inputs {
+  background: $gray;
+  padding: 20px 20px 10px 20px;
+  margin: 15px 5px;
+  border-radius:1px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text, .string, .password {
+  color: black;
+}
+
+.select {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+
+.form-inputs a {
+ color: $blue;
+}
+
+.form-control select option {
+  color: black;
+}
+
+#sing_in_links a {
+  color:black;
+}
+
+.container-form-flex {
+  padding-top: 25%;
+}
+
+.btn-sign {
+  background: $blue;
+  font-size: small;
+  color: white;
+  padding: 5px 10px;
+  border-radius:1px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-sign:hover{
+  background: $green;
+  color: white;
+}
+
+
+.sign-up-btn-line a{
+  color: $blue;
+  font-weight: bold;
+  font-size: normal;
+}
+
+#forget-pw a {
+  font-weight: lighter;
+  color: black;
+  font-size:x-small;
+  position: absolute;
+  margin-top: -10px;
+}
+
+.external-login {
+  width:225px;
+}

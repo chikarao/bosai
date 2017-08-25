@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+      <h2 class=text-center>
+        <strong>Log in</strong>
+      </h2>
+      <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-3">
+        <%- if devise_mapping.omniauthable? %>
+        <div class="external-login">
+          <%= link_to omniauth_authorize_path(resource_name, :facebook), {class: "btn btn-block btn-social btn-facebook"} do %>
+          <span class="fa fa-facebook"></span>
+          <div class="text-center">Facebook Login</div>
+          <% end %>
+
+          <br>
+
+          <%= link_to omniauth_authorize_path(resource_name, :twitter), {class: "btn btn-block btn-social btn-twitter"} do %>
+          <span class="fa fa-twitter"></span>
+          <div class="text-center">Twitter Login</div>
+          <% end %>
+        </div>
+        <% end -%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <br>
+        OR
+        <hr style="border-top: 1px solid black;">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true, label: false, placeholder: "Email" %>
+          <%= f.input :password, required: true, autofocus: true, label: false, placeholder: "Password" %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+          <div class="sign-up-btn-line">
+            <div class="row">
+              <div class="col-xs-4">
+                <%= f.button :submit, "Log in", {class: "btn-lg btn-sign" } %>
+              </div>
+              <div class="col-xs-5">
+                <p>No Account Yet?<br>
+                  <%= link_to "Sign Up", new_user_registration_path %>
+                </p>
+              </div>
+              <div class="col-xs-3">
+                <p>
+                  <div id="forget-pw">
+                    <%= link_to "Forgot password?", new_password_path(resource_name) %>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

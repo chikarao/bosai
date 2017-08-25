@@ -1,0 +1,568 @@
+    <div id="wrapper" style="height: 93%"> <!-- 0727 Adjusted by Kouhei -->
+
+      <div id="map"></div>
+      <div id="filter">
+        <%= render 'filter' %>
+
+      </div>
+      <div id="search">
+        <form class="form-inline">
+          <input type="text" id="radius" name="radius" placeholder="Enter KM" class="form-control km-entry" style="width: 100px; color:black;">
+          <input type="text" id="address" name="address" placeholder="Enter place or " class="form-control" style="width: 250px; color:black">
+          <input type="submit" value="Search" class="btn btn-primary btn-bordered btn-bordered-primary button-search" >
+        </form>
+
+      </div>
+      <div id="results">
+
+      </div>
+
+        <div id="summary">
+
+      </div>
+
+       </div>
+
+
+      <!-- <div class="modal hide fade" id="modalwindow">
+        <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           <h3>Title</h3>
+      </div>
+      <div class="modal-body">
+        <p>You need to search on google for that.</p>
+      </div>
+      <div class="modal-footer">
+        <a id="closemodal" href="https://www.google.com" class="btn btn-primary" target="_blank">Launch google.com</a>
+      </div>
+    </div> -->
+
+
+      </div>
+      <!-- put in link to the next page -->
+    </div>
+    <!-- end of wrapper -->
+
+    <% content_for(:after_js) do %>
+      <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?language=en&key=#{ENV['GOOGLE_API_BROWSER_KEY']}&callback=initMap" %>
+      <script>
+        var markers = []
+
+        var map;
+
+        var priorityHash = {high: 200, medium: 100, low: 0, null:0 }
+
+
+        function initMap(callback) {
+            map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: new google.maps.LatLng(<%= @items_requests.first.request.latitude %>, <%= @items_requests.first.request.longitude %>),
+            mapTypeId: 'roadmap'
+          });
+
+            // current_user.latitude current_user.longitude
+
+          map.markers = [];
+          map.circles = [];
+          // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+          var foodImage = {
+            url: '<%= asset_path('food.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+          var waterImage = {
+            url: '<%= asset_path('water.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var clothingImage = {
+            url: '<%= asset_path('clothing.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var blanketsImage = {
+            url: '<%= asset_path('blankets.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var tentsImage = {
+            url: '<%= asset_path('tents.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var firstaidImage = {
+            url: '<%= asset_path('firstaid.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var driversImage = {
+            url: '<%= asset_path('drivers.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(15, 15)
+          }
+
+           var heavyImage = {
+            url: '<%= asset_path('heavy.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(15, 15)
+          }
+
+           var generalImage = {
+            url: '<%= asset_path('general.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(15, 15)
+          }
+
+          var fireImage = {
+            url: '<%= asset_path('fire_image.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+
+          var medicalImage = {
+            url: '<%= asset_path('medical.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var rescueImage = {
+            url: '<%= asset_path('rescue.png') %>',
+            scaledSize: new google.maps.Size(45, 45),
+            anchor: new google.maps.Point(20, 20)
+
+          }
+
+          var icons = {
+            food: {
+              icon: foodImage
+            },
+            water: {
+              icon: waterImage
+            },
+            clothing: {
+              icon: clothingImage
+            },
+            blankets: {
+              icon: blanketsImage
+            },
+            tents: {
+              icon: tentsImage
+            },
+            firstaid: {
+              icon: firstaidImage
+            },
+            // supplies icons
+
+            drivers: {
+              icon: driversImage
+            },
+
+            heavy: {
+              icon: heavyImage
+            },
+
+            general: {
+              icon: generalImage
+            },
+            // volunteers icons
+
+            fire: {
+              icon: fireImage
+            },
+
+            medical: {
+              icon: medicalImage
+            },
+
+            rescue: {
+              icon: rescueImage
+            },
+            //emergency icons
+
+            // library: {
+            //   icon: iconBase + 'info-i_maps.png'
+            // }
+          };
+
+        var requests = [
+          <% @items_requests.each do |ir| %>
+
+         {
+          position: new google.maps.LatLng(<%= ir.request.latitude %>, <%= ir.request.longitude %>),
+          category: '<%= ir.request.category %>', id: <%= ir.request.id %>, user_id: <%= ir.request.user_id %>, address: '<%= ir.request.address %>', priority: '<%= ir.request.priority %>', status: '<%= ir.status %>', created_at: '<%= ir.created_at %>', updated_at: '<%= ir.updated_at %>', item_name: '<%= ir.item.name %>', quantity: <%= ir.quantity %>, item_id: '<%= ir.item.id %>'
+        },
+          <% end %>
+          ];
+          // end of requests assignment
+
+
+          function createCircle(marker, priorityRadius) {
+            var circle = new google.maps.Circle({
+                center: marker.position,
+                map:map,
+                radius:priorityRadius,
+                strokeColor: "red",
+                strokeOpacity:0.25,
+                strokeWeight: 1,
+                fillColor: "red"
+            });
+            return circle;
+          }
+
+          function createMarker(index) {
+
+            var marker = new google.maps.Marker({
+              position: requests[index].position,
+              icon: icons[requests[index].item_name].icon, //CHANGE ICONS HERE
+              map: map,
+              id: requests[index].id,
+              user_id: requests[index].user_id,
+              category: requests[index].category, // GOING TO BE ITEM
+              address: requests[index].address,
+              priority: requests[index].priority,
+              status: requests[index].status,
+              item_name: requests[index].item_name,
+              quantity: requests[index].quantity,
+              created_at: requests[index].created_at,
+              updated_at: requests[index].updated_at,
+
+              // label: labels[i % labels.length]
+            });
+
+
+            // var priority = "high";  // TAKE PRIORITY HERE use requests.priority???????
+
+            var x = Math.random() * 10;
+
+            if (x > 8.) {
+
+              var priority = "high";
+
+            } else {
+
+              var priority = "low";
+
+            };
+
+            // The below was for Demoday. Kou commented out at 0803.
+            //if (requests[index].id == 22) {
+            // priority = "high";
+            //};
+
+            map.circles.push(createCircle(marker, priorityHash[priority]));
+
+            // createdpushes circles into array
+
+             // circle.bindTo('center',marker[index],'position');
+
+            //  function getCustomRadiusForZoom(zoomLevel) {
+            //     switch (true) {
+            //         case (zoomLevel < 10 && zoomLevel > 5):
+            //             return 30;
+            //         case (zoomLevel <= 5 && zoomLevel > 1):
+            //             return 15;
+            //         case (zoomLevel <= 1):
+            //             return 5;
+            //     }
+            //     return radius;
+            //   };
+
+            //  google.maps.event.addListener(map, 'zoom_changed', function() {
+            //   var zoomLevel = map.getZoom();
+            //   circle.setRadius(getCustomRadiusForZoom(zoomLevel));
+            // });
+
+
+              function displayEachData() {
+
+                  // pass this as params[:data_value] in controller
+
+                $('#results').html(
+
+                  '<div class="text-center heading-box align-middle"><h3 class="results-text-heading">' + 'Request Snapshot' + '</h3></div>'
+                    + '<p class="results-text first-p">' + 'Item:  ' + marker.item_name.charAt(0).toUpperCase() + marker.item_name.slice(1) + '</p>'
+                    + '<p class="results-text">' + 'Quantity:  ' + marker.quantity + '</p>' + '<p class="results-text">'
+                     + '<p class="results-text">' + 'Address: '  + marker.address +  '</p>'
+                    + '<p class="results-text">' + 'Status:  ' + marker.status.charAt(0).toUpperCase() + marker.status.slice(1) + '</p>'
+                    + '<p class="results-text">' + 'Priority:  ' + marker.priority.charAt(0).toUpperCase() + marker.priority.slice(1) + '</p>'
+                    + '<p class="results-text">' + 'Category:  ' + marker.category.charAt(0).toUpperCase() + marker.category.slice(1) + '</p>'
+
+                    + '<p class="results-text">' + 'Created at:  ' + marker.created_at + '</p>' + '<p class="results-text">' + 'ID:  ' + marker.id + '</p>'
+                  // + '<p class="results-text last-pline">' + 'Updated at:  ' + marker.updated_at + '</p>'
+                  // + '<%#= button_to "Show Details", user_request_path(' + marker.user_id + ', ' + marker.id + '), class: 'btn btn-primary' %>'
+                    + '<div class="button-box">'
+                    + '<a href="/users/' + marker.user_id + '/requests/' + marker.id + '"class="btn btn-primary button-show-details"> Take Action! </a>'
+                 //  + '</div>'
+// + '<table style="width=100%">' +
+
+//        + '<tr>'
+//         + '<td>ID:</td>'
+//          + '<td>' + marker.id + '</td>'
+//       + '</tr>'
+
+//       + '</table>'
+
+
+
+                  )};
+                // end of displayEachData
+
+
+            marker.addListener('click', function(){
+
+              displayEachData();
+
+               $('#results').toggle(400);
+
+            });
+            // end of addListener click
+
+            return marker;
+           };
+            // end of createMarker
+
+      for (i = 0; i < requests.length; i++) {
+        map.markers.push(createMarker(i));
+      }
+      // end of for loop
+      // var markerCluster = new MarkerClusterer(map, map.markers,
+      //       {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      // this is for clustering.. need to load marketclusterer
+
+        callback();
+      }
+       // END OF INITMAP end of init map
+
+        var filtersHash = {food:false, water:false, clothing:false, blankets:false, tents:false, firstaid:false, drivers:false, heavy:false, general:false, fire:false, medical:false, rescue:false }
+        //set initial value of checkboxes
+
+        function filterMarkers(hash) {
+          //called after doafteronfilterchange
+          // console.log(hash);
+          for (i = 0; i < map.markers.length; i++) {
+
+            var itemName = map.markers[i].item_name; //
+
+            if ( hash[itemName] == true ) {
+
+              map.markers[i].setMap(null);
+              // map.markers[i].setVisible(false);
+              // delete map.markers[i];
+              map.circles[i].setMap(null);
+
+          } else {
+
+            map.markers[i].setMap(map);
+            map.circles[i].setMap(map);
+
+          };
+        };
+      };
+        //end of filterMarkers
+
+       // create array of markers based on filtered results
+       var summaryMarkersHash = {}
+
+       function displaySummaryData() {
+
+                // pass this as params[:data_value] in controller
+
+        $('#summary').html('<div class="text-center heading-box"><h3 class="summary-text-heading">' + 'Requested Items Summary  ' + '</h3></div>');
+console.log(summaryMarkersHash);
+
+            for(var key in summaryMarkersHash) {
+             if(summaryMarkersHash.hasOwnProperty(key)) {
+
+                $('#summary').append('<p class="summary-text">' + key.charAt(0).toUpperCase() + key.slice(1) + ':  ' + summaryMarkersHash[key].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</p>'
+                );
+
+              };
+            };
+
+        // $('#summary').append('<div class="button-box"><a href=""class="btn btn-primary button-show-summary"> Do Something About It! </a></div>');
+
+        };
+
+
+      function doAfterOnFilterChange(changedBox) {
+
+        filtersHash[changedBox] = !filtersHash[changedBox];
+        filterMarkers(filtersHash);
+
+         console.log(filtersHash);
+         // #####################################
+
+
+      };
+
+      function onFilterChange() {
+
+       $('input[name=filter]').change(function () {
+
+         var changedBox = $(this).attr('value');
+         console.log(changedBox);
+         // #####################################
+
+         doAfterOnFilterChange(changedBox);
+
+        });
+       //end of .change
+
+          $('.button-uncheckall').click(function(){
+
+            if($('.filter-checkbox').prop('checked') == true) {
+              $('.filter-checkbox').prop('checked',false);
+              $(this).html('Check all');
+
+
+            for(var key in filtersHash) {
+              if(filtersHash.hasOwnProperty(key)) {
+                filtersHash[key] = true;
+                doAfterOnFilterChange(filtersHash[key]);
+                console.log(filtersHash)
+                // #####################################
+              }
+            }
+
+            } else {
+              $('.filter-checkbox').prop('checked',true);
+              $(this).html('Uncheck all');
+
+              for(var key in filtersHash) {
+                if(filtersHash.hasOwnProperty(key)) {
+                 filtersHash[key] = false;
+                 doAfterOnFilterChange(filtersHash[key]);
+                 console.log(filtersHash)
+                 // #####################################
+              }
+            }
+
+            }
+          });
+          //end of .click
+
+      };
+      // get value of checkbox
+
+      initMap(onFilterChange);
+
+        $(document).ready(function() {
+          $("#results").hide();
+          $("#summary").hide();
+
+
+
+
+        function summarizeMarkerDataInitialize() {
+
+            map.markers.forEach(function(marker){
+
+              if (filtersHash[marker.item_name] == false) {
+
+                summaryMarkersHash[marker.item_name] = 0;
+
+                  };
+                 });
+
+            // console.log(summaryMarkersHash);
+          };
+
+
+
+          function summarizeMarkerData() {
+
+            map.markers.forEach(function(marker){
+
+              if (filtersHash[marker.item_name] == false) {
+
+                 // console.log(marker.item_name);
+                 //  console.log(marker.quantity);
+
+                summaryMarkersHash[marker.item_name] += marker.quantity;
+
+                  };
+
+                 });
+
+            // console.log(summaryMarkersHash);
+          };
+
+            $(".button-summarize").html('Summarize');
+
+
+            $(".button-summarize").click(function(){
+
+              var buttonText = $(".button-summarize").html();
+
+              // console.log(buttonText.trim());
+              // console.log(buttonText == "Summarize");
+
+              if (buttonText == "Summarize") {
+
+                $(".button-summarize").html('Hide Summary');
+                $('#summary').show(400);
+                summarizeMarkerDataInitialize();
+                summarizeMarkerData();
+                displaySummaryData();
+                summaryMarkersHash = {};
+
+              } else {
+
+                $(".button-summarize").html('Summarize');
+                $('#summary').hide(400);
+
+              };
+
+          });
+
+              // %(map).click(function(){
+              //   $('#results').hide()
+              //  });
+
+
+
+
+
+
+        });
+        // end of on document ready
+
+      </script>
+      <!-- end of map script -->
+
+      <%#= javascript_include_tag "https://maps.googleapis.com/maps/api/js?language=en&key=#{ENV['GOOGLE_API_BROWSER_KEY']}&callback=initMap" %>
+
+      <!-- <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=[key]&callback=initMap">
+      </script> -->
+
+      <%#= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+
+
+
+      <script>
+       function toggleChevron(e) {
+        $(e.target)
+        .prev('.panel-heading')
+        .find("i.indicator")
+        .toggleClass('fa-caret-down fa-caret-right');
+        }
+        $('#accordion').on('hidden.bs.collapse', toggleChevron);
+        $('#accordion').on('shown.bs.collapse', toggleChevron);
+      </script>
+    </script>
+    <% end %>
